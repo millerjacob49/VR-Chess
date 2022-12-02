@@ -1,5 +1,8 @@
-//creating new component for chess pieces               
-
+/* Chess Piece Component
+*
+*  @author Jacob Miller
+*
+*/
 //component will contain information such as:
 //  1. It's current position on the chess board i.e. a2, b3 etc
 //  2. Its piece type......maybe not necessary

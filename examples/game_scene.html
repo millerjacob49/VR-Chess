@@ -33,7 +33,6 @@
 	<script src="js/piece_color_component.js"></script>
 	<script src="js/color_changer_component.js"></script>
 	<script src="js/repo_component.js"></script>
-	<script src="js/camrender.js"></script>
 
 	<!--Extra movement fun stuff -->
 	<!--
@@ -94,7 +93,7 @@
 				});
 			}
 
-			//okie dokie, so we have an empty template for the turn, entity? 
+			//syncs/networks the turn counter
 			if (!NAF.schemas.hasTemplate('#empty-template')) {
 				NAF.schemas.add({
 					template: '#empty-template',
@@ -106,6 +105,7 @@
 				});
 			}
 
+			//syncs/networks the player selector pieces
 			if (!NAF.schemas.hasTemplate('#sel-template')) {
 				NAF.schemas.add({
 					template: '#sel-template',
@@ -216,10 +216,7 @@
 					<a-entity class="chessguy" chess-piece material>
 					</a-entity>
 				</template>
-				<!-- ctrl + / for instant comment -->
-				<!--gonna keep it separate from piece interaction, so no bugs-->
-				<!-- repo component.js, lines 30-36 -->
-				<!-- very nice.  -->
+
 				<template id="empty-template">
 					<a-entity turns ></a-entity>
 				</template>
@@ -235,7 +232,7 @@
 		<a-entity id="player"  networked="template:#avatar-template;attachTemplateToLocal:false;" position="4 1.2 0"  look-controls="pointerLockEnabled:true;">
 			<a-entity id="cameraRig"  camera>
 				<a-plane id="startText"opacity="0"text="value: Please choose Player 1 or Player 2 by clicking the king. If a king is missing, it has already been selected. Please turn around and select the remaining king.;"
-				scale="0.3 0.18" visible="true" color="blue" position="0 0.125 -0.2"></a-plane>
+				scale="0.3 0.18" visible="true" position="0 0.125 -0.2"></a-plane>
 
 				<a-entity id="playercursor" cursor="fuse: false; fuseTimeout: 500" raycaster="objects: .clickable" position="0 0 -0.2"
 				geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003"
@@ -246,12 +243,9 @@
 
 		<!-- And this would its actual entity -->
 		<a-entity id="empty"  networked="template:#empty-template;networkId:emp;persistent:true;owner:emptything;" whoseTurn="0" ></a-entity>
-		<!-- try changing the owner name to something other than rookwr, as something else is named that, just to remove it as a possible issue -->
-		<!-- gimi sec to read everything -->
-		<!------------------------------------------------------------------------ Entity/Asset Loading ------------------------------------------------------------------>
-		<!-- ROOK -->
-		<!-- replaced these with the mixins for promotions; will replace the promoting pawn with player's chosen piece (rook, knight, bishop, queen) -->
 
+<!------------------------------------------------------------------------ Entity/Asset Loading ------------------------------------------------------------------>
+		
 
 		<!--rook that's white starting on the right side, the mixin brings in the 
 			assests it needs, and then position is what we are trying to play around with -->

@@ -19,14 +19,17 @@ AFRAME.registerComponent('cursor-listener', {
 				// Grab a reference to the plane we'll use to signify when
 				// we highlight a piece. It starts invisible, but well
 				// make it visible when we click on it
-				//<<<<<<< HEAD
 				const highlightPlane = document.querySelector('#highlight-plane');  
 				//#highlight-plane is a html element, that we are assigning to highlightPlane, which is a js element. 
 				//querySelector is just a method that calls up the DOM, and in this specific case goes "AYO GIMI THE FIRST highlight-plane YOU SEE"
 				//that's why there's a hashtag in front of it. hightlightPlane is a js element. 
 				
+
 				const play = document.querySelector('#playercursor')
+
+                //This accesses our turn counter
                 const emptyThing = document.querySelector('#empty')
+
                 //Gives us an array of ALL .chessguys
                 const pieces = document.querySelectorAll('.chessguy');
 
@@ -74,7 +77,7 @@ AFRAME.registerComponent('cursor-listener', {
             // to make it horizontal since by default <a-plane> is like upright
             // instead of flat.)
             const localIntersection = object3D.worldToLocal(worldVector);
-            //console.log(localIntersection);
+
             // Normalize to 0 - 1 (the board is 4 units wide and positions go into the negative)
             // Also discard the "z-axis" here - chess isn't 3d.
             const boardPosition = new THREE.Vector2(
@@ -110,8 +113,6 @@ AFRAME.registerComponent('cursor-listener', {
 //******************************************************************** BOARD TO CHESS TERM FUNCTION ********************************************************************************** */
         // convert a "chess space" position to a string like "C4", "D1"
         const boardToChessTerm = (boardPosition) => {
-            // Chess board looks like
-            // https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Starting_position_in_a_chess_game.jpg/1920px-Starting_position_in_a_chess_game.jpg
             const letters = new Map([
                 [1, 'a'],
                 [2, 'b'],
@@ -139,7 +140,6 @@ AFRAME.registerComponent('cursor-listener', {
             var iterX = 0
             var iterY = 0
             var direction = 0   //0 for forward/backward | 1 for side-side | 2 for diagnol | 3 for antidiagnol
-            console.log(curP.id[0] + play.getAttribute('playerID'))
             if(play.getAttribute('playerID')==0 && curP.id[0]=='b'){
                 return false;
             }
@@ -312,7 +312,6 @@ AFRAME.registerComponent('cursor-listener', {
                                 var iterf = 7
                                 while (iterf<iter){ //checks if theres a piece in the way for positive movement
                                     if(getPieceID(modBoardPos(sPos, 0, straightMoves[iterf]))!=-1){
-                                        console.log('false')
                                         return false
                                     }
                                     else{
@@ -325,7 +324,6 @@ AFRAME.registerComponent('cursor-listener', {
                                 var iterb = 6
                                 while (iterb>iter){
                                     if(getPieceID(modBoardPos(sPos, 0, straightMoves[iterb]))!=-1){
-                                        console.log('false')
                                         return false
                                     }
                                     else{
@@ -340,7 +338,6 @@ AFRAME.registerComponent('cursor-listener', {
                                 var iterR = 7
                                 while (iterR<iter){
                                     if(getPieceID(modBoardPos(sPos, straightMoves[iterR], 0 ))!=-1){
-                                        console.log('false')
                                         return false
                                     }
                                     else{
@@ -353,7 +350,6 @@ AFRAME.registerComponent('cursor-listener', {
                                 var iterL = 6
                                 while (iterL>iter){
                                     if(getPieceID(modBoardPos(sPos, straightMoves[iterL], 0))!=-1){
-                                        console.log('false')
                                         return false
                                     }
                                     else{
@@ -385,7 +381,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterf = 7
                                     while (iterf<iter){ //checks if theres a piece in the way for positive diagnol movement
                                         if(getPieceID(modBoardPos(sPos, straightMoves[iterf], straightMoves[iterf]))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -398,7 +393,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterb = 6
                                     while (iterb>iter){
                                         if(getPieceID(modBoardPos(sPos, straightMoves[iterb], straightMoves[iterb]))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -414,7 +408,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterAntiR = 6
                                     while (iterR<iter){
                                         if(getPieceID(modBoardPos(sPos, straightMoves[iterR], straightMoves[iterAntiR] ))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -429,7 +422,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterAntiL = 7
                                     while (iterL>iter){
                                         if(getPieceID(modBoardPos(sPos, straightMoves[iterL], straightMoves[iterAntiL]))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -470,7 +462,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterf = 7
                                     while (iterf<iter){ //checks if theres a piece in the way for positive movement
                                         if(getPieceID(modBoardPos(sPos, 0, straightMoves[iterf]))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -483,7 +474,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterb = 6
                                     while (iterb>iter){
                                         if(getPieceID(modBoardPos(sPos, 0, straightMoves[iterb]))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -498,7 +488,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterR = 7
                                     while (iterR<iter){
                                         if(getPieceID(modBoardPos(sPos, straightMoves[iterR], 0 ))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -511,7 +500,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterL = 6
                                     while (iterL>iter){
                                         if(getPieceID(modBoardPos(sPos, straightMoves[iterL], 0))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -525,9 +513,7 @@ AFRAME.registerComponent('cursor-listener', {
                                 if(iter>6){
                                     var iterf = 7
                                     while (iterf<iter){ //checks if theres a piece in the way for positive diagnol movement
-                                        console.log( "2, iter>6" + getPieceID(modBoardPos(sPos, straightMoves[iterf], straightMoves[iterf])))
                                         if(getPieceID(modBoardPos(sPos, straightMoves[iterf], straightMoves[iterf]))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -540,7 +526,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterb = 6
                                     while (iterb>iter){
                                         if(getPieceID(modBoardPos(sPos, straightMoves[iterb], straightMoves[iterb]))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -556,7 +541,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterAntiR = 6
                                     while (iterR<iter){
                                         if(getPieceID(modBoardPos(sPos, straightMoves[iterR], straightMoves[iterAntiR] ))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -564,7 +548,6 @@ AFRAME.registerComponent('cursor-listener', {
                                             iterAntiR--
                                         }
                                     }
-                                    console.log(modBoardPos(sPos, straightMoves[iterR], straightMoves[iterAntiR]))
                                     return true 
                                 }
                                 else if(iter<=6){   //checks if theres a piece in the way to the negX, posY
@@ -572,7 +555,6 @@ AFRAME.registerComponent('cursor-listener', {
                                     var iterAntiL = 7
                                     while (iterL>iter){
                                         if(getPieceID(modBoardPos(sPos, straightMoves[iterL], straightMoves[iterAntiL]))!=-1){
-                                            console.log('false')
                                             return false
                                         }
                                         else{
@@ -589,7 +571,7 @@ AFRAME.registerComponent('cursor-listener', {
 
 //------------------------------------------------------------ MODBOARDPOS AND GETPIECEID FUNCTIONS -----------------------------------------------------------------------------
         //Allows me to check availability of a square for piece movements such as PAWN kill for diagnol kills
-        const modBoardPos = (boardPosition, x, y) => {              //***********LOOK INTO THIS*************** */
+        const modBoardPos = (boardPosition, x, y) => {              
             newPos = new THREE.Vector2(boardPosition.x, boardPosition.y)
             newPos.x = boardPosition.x + x;
             newPos.y = boardPosition.y + y;
@@ -602,7 +584,6 @@ AFRAME.registerComponent('cursor-listener', {
             var curPieceID = -1;
 
             for(i; i <32; i++){
-            // console.log(i)
                 if(boardToChessTerm(boardPosition)==pieces[i].getAttribute('boardPos')){
                     
                     curPieceID = i;
@@ -621,22 +602,17 @@ AFRAME.registerComponent('cursor-listener', {
             if (!obj.detail.intersection) //if there's no intersection(if you don't click on the board) it yeets you
                 return;
             
-            console.log(play.getAttribute('playerID'))
-            console.log("Whose" + emptyThing.getAttribute('whoseTurn'))
             let initSound = new Audio('src/sounds/move-self.mp3')
             let badSound = new Audio('src/sounds/notify.mp3')
             initSound.play()
 
             
             
-            const startPosition = worldToBoard(obj.detail.intersection.point) //"obj.detail.intersection.point" understand and document this better, appears to grab the position
-            console.log(boardToChessTerm(startPosition))
+            const startPosition = worldToBoard(obj.detail.intersection.point) //This is exact WORLD point where click occurs
             //translates from the world to the board. 
             const curPiece = getPieceID(startPosition) 
-            console.log(curPiece)
             //this.data.curHolding = curPiece;
             if(curPiece== (-1)){
-                console.log("NOPE!")
                 return;
             }
             pieceTarget = boardToWorld(startPosition);//get piece position for storing it later
@@ -656,7 +632,6 @@ AFRAME.registerComponent('cursor-listener', {
                 NAF.utils.takeOwnership(pieces[curPiece]); //this is a function that takes ownership of all pieces. It work
                 NAF.utils.takeOwnership(emptyThing);
                 //pretty sure the above line is correct but if everything else fine change to pices[curPiece].id
-                //console.log("pieces[curPiece].id: " + pieces[curPiece].id)
                 this.removeEventListener('mouseup', onMouseUp); //ask about this. to whatever subject matter expert we can find  //ask about this. to whatever subject matter expert we can find 
 
                 let pieceToAnimate = pieces[curPiece];//removing attribute set to stop and reset postion
@@ -667,7 +642,6 @@ AFRAME.registerComponent('cursor-listener', {
                 
 //*********************************************************** LOGIC TO PREVENT OCCUPIED SPACE MOVES ******************************************************************************************* */
                 const endPosPiece = getPieceID(endPosition)
-               // console.log("Whose Turn??" + whoseTurn)
                 let turn = emptyThing.getAttribute('whoseTurn')
 
                 if(turn == play.getAttribute('playerID')){
@@ -694,18 +668,15 @@ AFRAME.registerComponent('cursor-listener', {
                     }
                     else{   //if space IS OCCUPIED
 
-                        console.log("End " + pieces[endPosPiece].id)
                         if(pieces[curPiece].id[0] == pieces[endPosPiece].id[0]){    //if pieces are same color
                             //means pieces are the same color, DO NOT MOVE
                             badSound.play()
-                            console.log("Pieces same color, INVALID MOVE")
                         }
                         else{   //KILL/CAPTURE FUNCTION WILL BE PLACED HERE!  ---> Pieces are not some color, KILL
                             //isMoveValid()
                             if(isMoveValid(pieces[curPiece], startPosition, endPosition)){      //isMoveValid(pieces[curPiece], startPosition, endPosition) 
                                 pieces[curPiece].object3D.position.copy(boardToWorld(endPosition))      //Move piece into new position
                                 pieces[curPiece].setAttribute('boardPos', boardToChessTerm(endPosition))
-                                console.log(pieces[curPiece].getAttribute('boardPos'))
                                 
                                 //some quick notes for my man Jacob
                                 //now we could place the following code NAF.utils.takeOwnership(pieces[endPosPiece]); above
@@ -738,7 +709,7 @@ AFRAME.registerComponent('cursor-listener', {
                 }
     
                 highlightPlane.object3D.position.copy(boardToWorld(endPosition))   //positioning highlight plane at endPosition
-                highlightPlane.setAttribute("color", "red");  
+                highlightPlane.setAttribute("color", "blue");  
 
             };
 
