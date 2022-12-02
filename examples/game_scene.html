@@ -135,8 +135,8 @@
 <body>
 	<!--networked scene is what lets NAF know this is a networked scene, and starts up the processes related to that. 
 	underneath that is options avaliable to us-->
-	
-	<a-scene dynamic-room vr-mode-ui="enabled: false;" >
+<a-entity position="0 0.4 0">
+	<a-scene dynamic-room vr-mode-ui="enabled: true;" >
 	<!--Displays room code-->
 	<div class="roomCodeBox">
 	</div>
@@ -439,7 +439,7 @@
 		<a-entity position="0 1.6 0"scale="0.2 0.2 0.2" id="initial-color-changer"></a-entity>
 		
 		</a-scene>
-		
+	</a-entity>
 		<script>
 
 			// Called by Networked-Aframe when connected to server
