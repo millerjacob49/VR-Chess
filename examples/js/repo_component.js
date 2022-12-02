@@ -21,7 +21,6 @@ AFRAME.registerComponent('repo', {
                 avatar1.setAttribute('position', "0 1.2 0")
                 avatar1.setAttribute('movement-controls')
                 avatar1.setAttribute('wasd-controls', "acceleration:15")
-                avatar1.setAttribute('color', "blue")
                 
             }
             if(pCursor.getAttribute('playerID')==3){     //prevents players from selecting/removing both spawns
